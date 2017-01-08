@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Auto Generate SQL</title>
+  </head>
+  <body>
+        <form class="" method="get">
+            <?php foreach($fields as $field) :?>
+                <?php if ($field['type'] == 'select') :?>
+                    <select class="" name="<?php echo $field['name'];?>">
+                        <?php foreach($field['values'] as $value) :?>
+                            <option <?php echo ($$field['name'] == $value) ? "selected" : "" ;?> value="<?php echo $value; ?>"><?php echo $value;?></option>
+                        <?php endforeach;?>
+                    </select>
+                <?php elseif ($field['type'] == 'text'): ?>
+                    <input type="text" name="<?php echo $field['name'];?>" placeholder="Search word" value="<?php echo $$field['name'];?>">
+                <?php endif;?>
+
+
+            <?php endforeach;?>
+            <input type="submit" value="Generate SQL">
+        </form>
+
+        SQL:
+        <textarea name="name" rows="8" cols="40"><?php echo $sql;?></textarea>
+  </body>
+</html>
